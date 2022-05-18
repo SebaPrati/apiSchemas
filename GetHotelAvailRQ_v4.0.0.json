@@ -1,0 +1,1027 @@
+{
+  "id" : "http://services.sabre.com/hotel/avail/v4_0_0/GetHotelAvailRQ#",
+  "definitions" : {
+    "DateRangeTypeRef" : {
+      "type" : "object",
+      "title" : "DateRangeTypeRef",
+      "properties" : {
+        "EndDate" : {
+          "type" : "string",
+          "format": "date",
+          "title" : "EndDate"
+        },
+        "StartDate" : {
+          "type" : "string",
+          "format": "date",
+          "title" : "StartDate"
+        },
+        "CheckInTime" : {
+          "type" : "string",
+          "title" : "CheckInTime"
+        },
+        "CheckOutTime" : {
+          "type" : "string",
+          "title" : "CheckOutTime"
+        },
+        "DurationInHours" : {
+          "type" : "integer",
+          "minimum" : 0,
+          "exclusiveMinimum" : true,
+          "title" : "DurationInHours"
+        }
+      },
+      "required" : [ "StartDate", "EndDate" ],
+      "additionalProperties" : false
+    },
+    "LoyaltyIds" : {
+      "type" : "object",
+      "title" : "LoyaltyIds",
+      "properties" : {
+        "LoyaltyId" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          },
+          "maxItems" : 10,
+          "minItems" : 1,
+          "title" : "LoyaltyId"
+        }
+      },
+      "required" : [ "LoyaltyId" ],
+      "additionalProperties" : false
+    },
+    "HotelPref" : {
+      "type" : "object",
+      "title" : "HotelPref",
+      "properties" : {
+        "AmenityCodes" : {
+          "$ref" : "#/definitions/AmenityCodes",
+          "title" : "AmenityCodes"
+        },
+        "BrandCodes" : {
+          "$ref" : "#/definitions/BrandCodes",
+          "title" : "BrandCodes"
+        },
+        "PropertyTypeCodes" : {
+          "$ref" : "#/definitions/PropertyTypeCodes",
+          "title" : "PropertyTypeCodes"
+        },
+        "PropertyQualityCodes" : {
+          "$ref" : "#/definitions/PropertyQualityCodes",
+          "title" : "PropertyQualityCodes"
+        },
+        "ChainCodes" : {
+          "$ref" : "#/definitions/ChainCodes",
+          "title" : "ChainCodes"
+        },
+        "SecurityFeatureCodes" : {
+          "$ref" : "#/definitions/SecurityFeatureCodes",
+          "title" : "SecurityFeatureCodes"
+        },
+        "SabreRating" : {
+          "$ref" : "#/definitions/SabreRating",
+          "title" : "SabreRating"
+        },
+        "HotelName" : {
+          "minLength" : 3,
+          "maxLength" : 100,
+          "type" : "string",
+          "title" : "HotelName"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "GeoAttributes" : {
+      "type" : "object",
+      "title" : "GeoAttributes",
+      "properties" : {
+        "Attributes" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/GeoAttributes.Attributes"
+          },
+          "maxItems" : 10,
+          "minItems" : 0,
+          "title" : "Attributes"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "GeoRef.GeoCode" : {
+      "type" : "object",
+      "title" : "GeoRef.GeoCode",
+      "properties" : {
+        "Latitude" : {
+          "maximum" : 90,
+          "exclusiveMaximum" : false,
+          "minimum" : -90,
+          "exclusiveMinimum" : false,
+          "type" : "number",
+          "title" : "Latitude"
+        },
+        "Longitude" : {
+          "maximum" : 180,
+          "exclusiveMaximum" : false,
+          "minimum" : -180,
+          "exclusiveMinimum" : false,
+          "type" : "number",
+          "title" : "Longitude"
+        }
+      },
+      "required" : [ "Latitude", "Longitude" ],
+      "additionalProperties" : false
+    },
+    "HotelRefs" : {
+      "type" : "object",
+      "title" : "HotelRefs",
+      "properties" : {
+        "HotelRef" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/HotelRefs.HotelRef"
+          },
+          "maxItems" : 200,
+          "minItems" : 1,
+          "title" : "HotelRef"
+        }
+      },
+      "required" : [ "HotelRef" ],
+      "additionalProperties" : false
+    },
+    "RateInfoRef" : {
+      "type" : "object",
+      "title" : "RateInfoRef",
+      "properties" : {
+        "StayDateTimeRange" : {
+          "$ref" : "#/definitions/DateRangeTypeRef",
+          "title" : "StayDateTimeRange"
+        },
+        "Rooms" : {
+          "$ref" : "#/definitions/RateInfoRef.Rooms",
+          "title" : "Rooms"
+        },
+        "RatePlanCandidates" : {
+          "$ref" : "#/definitions/RatePlanCandidates",
+          "title" : "RatePlanCandidates"
+        },
+        "ConvertedRateInfoOnly" : {
+          "type" : "boolean",
+          "default" : true,
+          "title" : "ConvertedRateInfoOnly"
+        },
+        "LoyaltyIds" : {
+          "$ref" : "#/definitions/LoyaltyIds",
+          "title" : "LoyaltyIds"
+        },
+        "PrepaidQualifier" : {
+          "$ref" : "#/definitions/PrepaidQualifierType",
+          "title" : "PrepaidQualifier"
+        },
+        "RateSource" : {
+          "type" : "string",
+          "title" : "RateSource"
+        },
+        "CorpDiscount" : {
+          "pattern" : "^([0-9a-zA-Z]{1,20})$",
+          "type" : "string",
+          "title" : "CorpDiscount"
+        },
+        "RateRange" : {
+          "$ref" : "#/definitions/RateRange",
+          "title" : "RateRange"
+        },
+        "FrequentFlyerNumber" : {
+          "type" : "string",
+          "title" : "FrequentFlyerNumber"
+        },
+        "CurrencyCode" : {
+          "pattern" : "^([A-Z]{3})$",
+          "type" : "string",
+          "title" : "CurrencyCode"
+        },
+        "BestOnly" : {
+          "$ref" : "#/definitions/BestOnlyType",
+          "title" : "BestOnly"
+        },
+        "RefundableOnly" : {
+          "type" : "boolean",
+          "default" : false,
+          "title" : "RefundableOnly"
+        },
+        "TravellerCountry" : {
+          "pattern" : "^([a-zA-Z]{2})$",
+          "type" : "string",
+          "title" : "TravellerCountry"
+        }
+      },
+      "required" : [ "StayDateTimeRange", "Rooms", "CurrencyCode", "BestOnly" ],
+      "additionalProperties" : false
+    },
+    "ChainCodes" : {
+      "type" : "object",
+      "title" : "ChainCodes",
+      "properties" : {
+        "ChainCode" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          },
+          "maxItems" : 20,
+          "minItems" : 1,
+          "pattern" : "^([0-9a-zA-Z]{2})$",
+          "title" : "ChainCode"
+        }
+      },
+      "required" : [ "ChainCode" ],
+      "additionalProperties" : false
+    },
+    "GeoRef.AddressRef" : {
+      "type" : "object",
+      "title" : "GeoRef.AddressRef",
+      "properties" : {
+        "StateProv" : {
+          "minLength" : 0,
+          "maxLength" : 50,
+          "type" : "string",
+          "title" : "StateProv"
+        },
+        "City" : {
+          "minLength" : 0,
+          "maxLength" : 50,
+          "type" : "string",
+          "title" : "City"
+        },
+        "Street" : {
+          "minLength" : 0,
+          "maxLength" : 50,
+          "type" : "string",
+          "title" : "Street"
+        },
+        "CountryCode" : {
+          "minLength" : 0,
+          "maxLength" : 50,
+          "type" : "string",
+          "title" : "CountryCode"
+        },
+        "PostalCode" : {
+          "minLength" : 0,
+          "maxLength" : 50,
+          "type" : "string",
+          "title" : "PostalCode"
+        },
+        "County" : {
+          "minLength" : 0,
+          "maxLength" : 50,
+          "type" : "string",
+          "title" : "County"
+        }
+      },
+      "required" : [ "CountryCode" ],
+      "additionalProperties" : false
+    },
+    "RateRange" : {
+      "type" : "object",
+      "title" : "RateRange",
+      "properties" : {
+        "Min" : {
+          "minimum" : 0,
+          "exclusiveMinimum" : false,
+          "type" : "number",
+          "multipleOf": 0.001,
+          "title" : "Min"
+        },
+        "Max" : {
+          "minimum" : 0,
+          "exclusiveMinimum" : false,
+          "type" : "number",
+          "multipleOf": 0.001,
+          "title" : "Max"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "HotelRefs.HotelRef" : {
+      "type" : "object",
+      "title" : "HotelRefs.HotelRef",
+      "properties" : {
+        "CodeContext" : {
+          "$ref" : "#/definitions/CodeContextType",
+          "title" : "CodeContext"
+        },
+        "HotelCode" : {
+          "minLength" : 1,
+          "maxLength" : 20,
+          "type" : "string",
+          "title" : "HotelCode"
+        }
+      },
+      "required" : [ "HotelCode" ],
+      "additionalProperties" : false
+    },
+    "SecurityFeatureCodes" : {
+      "type" : "object",
+      "title" : "SecurityFeatureCodes",
+      "properties" : {
+        "Inclusive" : {
+          "type" : "boolean",
+          "default" : false,
+          "title" : "Inclusive"
+        },
+        "SecurityFeatureCode" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer",
+            "minimum" : 0,
+            "exclusiveMinimum" : true
+          },
+          "maxItems" : 20,
+          "minItems" : 1,
+          "title" : "SecurityFeatureCode"
+        }
+      },
+      "required" : [ "SecurityFeatureCode" ],
+      "additionalProperties" : false
+    },
+
+    "GetHotelAvailRQ" : {
+      "type" : "object",
+      "title" : "GetHotelAvailRQ",
+      "properties" : {
+        "version" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 255
+        },
+        "POS" : {
+          "$ref" : "#/definitions/POS",
+          "title" : "POS"
+        },
+        "SearchCriteria" : {
+          "$ref" : "#/definitions/SearchCriteria",
+          "title" : "SearchCriteria"
+        }
+      },
+      "required" : [ "SearchCriteria" ],
+      "additionalProperties" : false
+    },
+    "Room" : {
+      "type" : "object",
+      "title" : "Room",
+      "properties" : {
+        "Children" : {
+          "anyOf": [{
+            "type": "integer",
+            "minimum": 0,
+            "exclusiveMinimum": false
+          },
+            {
+              "type": "null"
+            }
+          ],
+          "title" : "Children"
+        },
+        "Adults" : {
+          "anyOf": [{
+            "type": "integer",
+            "minimum": 0,
+            "exclusiveMinimum": true
+          },
+            {
+              "type": "null"
+            }
+          ],
+          "title" : "Adults"
+        },
+        "Index" : {
+          "anyOf": [{
+            "type": "integer",
+            "minimum": 0,
+            "exclusiveMinimum": true
+          },
+            {
+              "type": "null"
+            }
+          ],
+          "title" : "Index"
+        },
+        "ChildAges" : {
+          "type" : "string",
+          "title" : "ChildAges"
+        }
+      },
+      "required" : [ "Index", "Adults" ],
+      "additionalProperties" : false
+    },
+    "ImageRef" : {
+      "type" : "object",
+      "title" : "ImageRef",
+      "properties" : {
+        "CategoryCode" : {
+          "anyOf": [{
+            "type": "integer",
+            "minimum": 0,
+            "exclusiveMinimum": true
+          },
+            {
+              "type": "null"
+            }
+          ],
+          "title" : "CategoryCode"
+        },
+        "Type" : {
+          "$ref" : "#/definitions/ImageTypes",
+          "title" : "Type"
+        },
+        "LanguageCode" : {
+          "pattern" : "^([a-z][a-z][_][A-Z][A-Z])|([a-zA-Z]{2})$",
+          "type" : "string",
+          "title" : "LanguageCode"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "AmenityCodes" : {
+      "type" : "object",
+      "title" : "AmenityCodes",
+      "properties" : {
+        "AmenityCode" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer",
+            "minimum": 0,
+            "exclusiveMinimum": true
+          },
+          "maxItems" : 20,
+          "minItems" : 1,
+          "title" : "AmenityCode"
+        },
+        "Inclusive" : {
+          "type" : "boolean",
+          "default": false,
+          "title" : "Inclusive"
+        }
+      },
+      "required" : [ "AmenityCode" ],
+      "additionalProperties" : false
+    },
+    "BrandCodes" : {
+      "type" : "object",
+      "title" : "BrandCodes",
+      "properties" : {
+        "BrandCode" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          },
+          "maxItems" : 20,
+          "minItems" : 1,
+          "pattern" : "^([0-9a-zA-Z ]{1,20})$",
+          "title" : "BrandCode"
+        }
+      },
+      "required" : [ "BrandCode" ],
+      "additionalProperties" : false
+    },
+    "SearchCriteria.GeoSearch" : {
+      "type" : "object",
+      "title" : "SearchCriteria.GeoSearch",
+      "properties" : {
+        "GeoRef" : {
+          "$ref" : "#/definitions/GeoRef",
+          "title" : "GeoRef"
+        },
+        "GeoAttributes" : {
+          "$ref" : "#/definitions/GeoAttributes",
+          "title" : "GeoAttributes"
+        }
+      },
+      "required" : [ "GeoRef" ],
+      "additionalProperties" : false
+    },
+    "GeoRef.RefPoint" : {
+      "type" : "object",
+      "title" : "GeoRef.RefPoint",
+      "properties" : {
+        "StateProv" : {
+          "minLength" : 2,
+          "maxLength" : 50,
+          "type" : "string",
+          "title" : "StateProv"
+        },
+        "CountryCode" : {
+          "minLength" : 2,
+          "maxLength" : 50,
+          "type" : "string",
+          "title" : "CountryCode"
+        },
+        "RefPointType" : {
+          "$ref" : "#/definitions/RefPointType",
+          "title" : "RefPointType"
+        },
+        "ValueContext" : {
+          "$ref" : "#/definitions/Type",
+          "title" : "ValueContext"
+        },
+        "Value" : {
+          "minLength" : 3,
+          "maxLength" : 50,
+          "type" : "string",
+          "title" : "Value"
+        }
+      },
+      "required" : [ "Value", "ValueContext", "RefPointType" ],
+      "additionalProperties" : false
+    },
+    "RatePlanCandidates" : {
+      "type" : "object",
+      "title" : "RatePlanCandidates",
+      "properties" : {
+        "RatePlanCandidate" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/RatePlanCandidates.RatePlanCandidate"
+          },
+          "maxItems" : 11,
+          "minItems" : 1,
+          "title" : "RatePlanCandidate"
+        },
+        "ExactMatchOnly" : {
+          "type" : "boolean",
+          "default": false,
+          "title" : "ExactMatchOnly"
+        },
+        "OtherAvailableRatePlans" : {
+          "type" : "boolean",
+          "default": false,
+          "title" : "OtherAvailableRatePlans"
+        }
+      },
+      "required" : [ "RatePlanCandidate" ],
+      "additionalProperties" : false
+    },
+
+    "POS" : {
+      "type" : "object",
+      "title" : "POS",
+      "properties" : {
+        "Source" : {
+          "$ref" : "#/definitions/POS.Source",
+          "title" : "Source"
+        }
+      },
+      "required" : [ "Source" ],
+      "additionalProperties" : false
+    },
+
+    "POS.Source" : {
+      "type" : "object",
+      "title" : "POS.Source",
+      "properties" : {
+        "PseudoCityCode" : {
+          "pattern" : "^([a-zA-Z0-9]{4})$",
+          "type" : "string",
+          "title" : "PseudoCityCode"
+        }
+      },
+      "required" : [ "PseudoCityCode" ],
+      "additionalProperties" : false
+    },
+
+
+    "SearchCriteria" : {
+      "type" : "object",
+      "title" : "SearchCriteria",
+      "oneOf" : [ {
+        "properties" : {
+          "RateInfoRef" : {
+            "$ref" : "#/definitions/RateInfoRef",
+            "title" : "RateInfoRef"
+          },
+          "HotelPref" : {
+            "$ref" : "#/definitions/HotelPref",
+            "title" : "HotelPref"
+          },
+          "OffSet" : {
+            "anyOf": [{
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMinimum": true
+            },
+              {
+                "type": "null"
+              }
+            ],
+            "default": 1,
+            "title" : "OffSet"
+          },
+          "SortOrder" : {
+            "$ref" : "#/definitions/SortOrderType",
+            "title" : "SortOrder"
+          },
+          "PageSize" : {
+            "anyOf": [{
+              "type": "integer",
+              "minimum": 0,
+              "maximum" : 200,
+              "exclusiveMinimum": true
+            },
+              {
+                "type": "null"
+              }
+            ],
+            "default": 200,
+            "title" : "PageSize"
+          },
+          "SortBy" : {
+            "$ref" : "#/definitions/SortByType",
+            "title" : "SortBy"
+          },
+          "TierLabels" : {
+            "type" : "boolean",
+            "title" : "TierLabels",
+            "default": true
+          },
+          "ImageRef" : {
+            "$ref" : "#/definitions/ImageRef",
+            "title" : "ImageRef"
+          },
+          "ShopKey" : {
+            "minLength" : 0,
+            "maxLength" : 240,
+            "type" : "string",
+            "title" : "ShopKey"
+          },
+          "RateDetailsInd" : {
+            "type" : "boolean",
+            "default": true,
+            "title" : "RateDetailsInd"
+          },
+          "HotelRefs" : {
+            "$ref" : "#/definitions/HotelRefs",
+            "title" : "HotelRefs"
+          }
+        },
+        "required" : [ "HotelRefs", "RateInfoRef" ],
+        "additionalProperties" : false
+      }, {
+        "properties" : {
+          "RateInfoRef" : {
+            "$ref" : "#/definitions/RateInfoRef",
+            "title" : "RateInfoRef"
+          },
+          "HotelPref" : {
+            "$ref" : "#/definitions/HotelPref",
+            "title" : "HotelPref"
+          },
+          "OffSet" : {
+            "anyOf": [{
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMinimum": true
+            },
+              {
+                "type": "null"
+              }
+            ],
+            "default": 1,
+            "title" : "OffSet"
+          },
+          "SortOrder" : {
+            "$ref" : "#/definitions/SortOrderType",
+            "title" : "SortOrder"
+          },
+          "PageSize" : {
+            "anyOf": [{
+              "type": "integer",
+              "minimum": 0,
+              "maximum" : 200,
+              "exclusiveMinimum": true
+            },
+              {
+                "type": "null"
+              }
+            ],
+            "default": 200,
+            "title" : "PageSize"
+          },
+          "SortBy" : {
+            "$ref" : "#/definitions/SortByType",
+            "title" : "SortBy"
+          },
+          "TierLabels" : {
+            "type" : "boolean",
+            "title" : "TierLabels",
+            "default": true
+          },
+          "ImageRef" : {
+            "$ref" : "#/definitions/ImageRef",
+            "title" : "ImageRef"
+          },
+          "ShopKey" : {
+            "minLength" : 0,
+            "maxLength" : 240,
+            "type" : "string",
+            "title" : "ShopKey"
+          },
+          "RateDetailsInd" : {
+            "type" : "boolean",
+            "default": true,
+            "title" : "RateDetailsInd"
+          },
+          "GeoSearch" : {
+            "$ref" : "#/definitions/SearchCriteria.GeoSearch",
+            "title" : "GeoSearch"
+          }
+        },
+        "required" : [ "GeoSearch", "RateInfoRef" ],
+        "additionalProperties" : false
+      },{
+        "properties" : {
+          "OffSet" : {
+            "anyOf": [{
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMinimum": true
+            },
+              {
+                "type": "null"
+              }
+            ],
+            "default": 1,
+            "title" : "OffSet"
+          },
+          "SortOrder" : {
+            "$ref" : "#/definitions/SortOrderType",
+            "title" : "SortOrder"
+          },
+          "PageSize" : {
+            "anyOf": [{
+              "type": "integer",
+              "minimum": 0,
+              "maximum" : 200,
+              "exclusiveMinimum": true
+            },
+              {
+                "type": "null"
+              }
+            ],
+            "default": 200,
+            "title" : "PageSize"
+          },
+          "SortBy" : {
+            "$ref" : "#/definitions/SortByType",
+            "title" : "SortBy"
+          },
+          "TierLabels" : {
+            "type" : "boolean",
+            "title" : "TierLabels",
+            "default": true
+          },
+          "ShopKey" : {
+            "minLength" : 0,
+            "maxLength" : 240,
+            "type" : "string",
+            "title" : "ShopKey"
+          },
+          "RateDetailsInd" : {
+            "type" : "boolean",
+            "default": true,
+            "title" : "RateDetailsInd"
+          }
+        },
+        "additionalProperties" : false
+      }]
+    },
+    "GeoRef" : {
+      "type" : "object",
+      "title" : "GeoRef",
+      "oneOf" : [ {
+        "properties" : {
+          "UOM" : {
+            "$ref" : "#/definitions/UnitOfMeasureType",
+            "title" : "UOM"
+          },
+          "Radius" : {
+            "type" : "number",
+            "title" : "Radius"
+          },
+          "RefPoint" : {
+            "$ref" : "#/definitions/GeoRef.RefPoint",
+            "title" : "RefPoint"
+          }
+        },
+        "required" : [ "RefPoint","Radius","UOM" ],
+        "additionalProperties" : false
+      }, {
+        "properties" : {
+          "UOM" : {
+            "$ref" : "#/definitions/UnitOfMeasureType",
+            "title" : "UOM"
+          },
+          "Radius" : {
+            "type" : "number",
+            "title" : "Radius"
+          },
+          "GeoCode" : {
+            "$ref" : "#/definitions/GeoRef.GeoCode",
+            "title" : "GeoCode"
+          }
+        },
+        "required" : [ "GeoCode","Radius","UOM" ],
+        "additionalProperties" : false
+      }, {
+        "properties" : {
+          "UOM" : {
+            "$ref" : "#/definitions/UnitOfMeasureType",
+            "title" : "UOM"
+          },
+          "Radius" : {
+            "type" : "number",
+            "title" : "Radius"
+          },
+          "AddressRef" : {
+            "$ref" : "#/definitions/GeoRef.AddressRef",
+            "title" : "AddressRef"
+          }
+        },
+        "required" : [ "AddressRef","Radius","UOM" ],
+        "additionalProperties" : false
+      } ]
+    },
+    "GeoAttributes.Attributes" : {
+      "type" : "object",
+      "title" : "GeoAttributes.Attributes",
+      "properties" : {
+        "Name" : {
+          "type" : "string",
+          "title" : "Name"
+        },
+        "Value" : {
+          "type" : "string",
+          "title" : "Value"
+        }
+      },
+      "required" : [ "Name", "Value" ],
+      "additionalProperties" : false
+    },
+    "PropertyTypeCodes" : {
+      "type" : "object",
+      "title" : "PropertyTypeCodes",
+      "properties" : {
+        "Inclusive" : {
+          "type" : "boolean",
+          "default" : false,
+          "title" : "Inclusive"
+        },
+        "PropertyTypeCode" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer",
+            "minimum": 0,
+            "exclusiveMinimum": true
+          },
+          "maxItems" : 20,
+          "minItems" : 1,
+          "title" : "PropertyTypeCode"
+        }
+      },
+      "required" : [ "PropertyTypeCode" ],
+      "additionalProperties" : false
+    },
+    "PropertyQualityCodes" : {
+      "type" : "object",
+      "title" : "PropertyQualityCodes",
+      "properties" : {
+        "Inclusive" : {
+          "type" : "boolean",
+          "default" : false,
+          "title" : "Inclusive"
+        },
+        "PropertyQualityCode" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer",
+            "minimum": 0,
+            "exclusiveMinimum": true
+          },
+          "maxItems" : 20,
+          "minItems" : 1,
+          "title" : "PropertyQualityCode"
+        }
+      },
+      "required" : [ "PropertyQualityCode" ],
+      "additionalProperties" : false
+    },
+    "RatePlanCandidates.RatePlanCandidate" : {
+      "type" : "object",
+      "title" : "RatePlanCandidates.RatePlanCandidate",
+      "properties" : {
+        "RatePlanType" : {
+          "pattern" : "^([0-9]{1,2})$",
+          "enum" : [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33"],
+          "type" : "string",
+          "title" : "RatePlanType"
+        },
+        "RatePlanCode" : {
+          "type" : "string",
+          "title" : "RatePlanCode"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "SabreRating" : {
+      "type" : "object",
+      "title" : "SabreRating",
+      "properties" : {
+        "Min" : {
+          "pattern" : "^([0]{1}\\.[5]{1}|[1-4]{1}\\.[0,5]{0,1}|[5]{1}\\.[0]{1}|[1-5]{1})$",
+          "type" : "string",
+          "title" : "Min"
+        },
+        "Max" : {
+          "pattern" : "^([0]{1}\\.[5]{1}|[1-4]{1}\\.[0,5]{0,1}|[5]{1}\\.[0]{1}|[1-5]{1})$",
+          "type" : "string",
+          "title" : "Max"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "RateInfoRef.Rooms" : {
+      "type" : "object",
+      "title" : "RateInfoRef.Rooms",
+      "properties" : {
+        "Room" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Room"
+          },
+          "minItems" : 1,
+          "title" : "Room"
+        }
+      },
+      "required" : [ "Room" ],
+      "additionalProperties" : false
+    },
+    "PrepaidQualifierType" : {
+      "properties" : { },
+      "enum" : [ "IncludePrepaid", "PrepaidOnly", "ExcludePrepaid" ],
+      "minLength": 1,
+      "maxLength": 15,
+      "default": "IncludePrepaid",
+      "type" : "string",
+      "additionalProperties" : false
+    },
+    "CodeContextType" : {
+      "properties" : { },
+      "enum" : [ "GLOBAL", "SABRE" ],
+      "type" : "string",
+      "default": "SABRE",
+      "additionalProperties" : false
+    },
+    "SortOrderType" : {
+      "properties" : { },
+      "enum" : [ "ASC", "DESC" ],
+      "additionalProperties" : false
+    },
+    "SortByType" : {
+      "properties" : { },
+      "enum" : [ "DistanceFrom", "TotalRate", "SabreRating" ],
+      "default": "TotalRate",
+      "additionalProperties" : false
+    },
+    "UnitOfMeasureType" : {
+      "properties" : { },
+      "enum" : [ "MI", "KM" ],
+      "type" : "string",
+      "additionalProperties" : false
+    },
+    "Type" : {
+      "properties" : { },
+      "enum" : [ "NAME", "CODE" ],
+      "additionalProperties" : false
+    },
+    "ImageTypes" : {
+      "properties" : { },
+      "enum" : [ "ORIGINAL", "THUMBNAIL", "SMALL", "MEDIUM", "LARGE" ],
+      "default" : "THUMBNAIL",
+      "additionalProperties" : false
+    },
+    "BestOnlyType" : {
+      "properties" : { },
+      "enum" : [ "1", "2", "3" ],
+      "additionalProperties" : false
+    },
+    "RefPointType" : {
+      "properties" : { },
+      "enum" : [ "5", "6", "7", "11", "16", "18", "37" ],
+      "additionalProperties" : false
+    }
+  },
+  "type" : "object",
+  "properties" : {
+    "GetHotelAvailRQ" : {
+      "$ref" : "#/definitions/GetHotelAvailRQ"
+    }
+  },
+  "additionalProperties" : false
+}
